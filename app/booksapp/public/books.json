@@ -4,7 +4,7 @@
     "title": "Ubik", 
     "authors": ["Philip K. Dick"],
     "image": "https://covers.openlibrary.org/b/id/9251896-L.jpg",
-    "rating": 5,
+    "rating": 3,
     "numberrating": 300
   },
   { 
@@ -12,7 +12,7 @@
     "title": "Do Androids Dream of Electric Sheep?", 
     "authors": ["Philip K. Dick"],
     "image": "https://covers.openlibrary.org/b/id/11153217-L.jpg",
-    "rating": 5,
+    "rating": 4,
     "numberrating": 255
   },
   { 
@@ -28,7 +28,7 @@
     "title": "Minority Report", 
     "authors": ["Philip K. Dick"],
     "image": "https://covers.openlibrary.org/b/id/911202-L.jpg",
-    "rating": 5,
+    "rating": 2,
     "numberrating": 450
   }
 ]
