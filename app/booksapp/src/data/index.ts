@@ -15,6 +15,11 @@ export interface Author {
     name: string
 }
 
+export interface Rating {
+    rating: number,
+    value: number
+}
+
 export function getAllBooks(search: string, fn: (books: Book[]) => void) {
     const sql = `
               SELECT * FROM Book b
@@ -151,5 +156,20 @@ export function getAuthors(fn: (authors: Author[]) => void) {
                 fn(rows)
             }
         })
+}
+
+export function getStats(fn: (ratings:Rating[]) => void)  {
+    const sql = `
+              SELECT rating, count(*) as value FROM Book GROUP BY rating
+        `
+    db.all(sql, (err, rows) => {
+        if (err) {
+            console.log("error in database: " + err)
+            fn([])
+        } else {
+            fn(rows)
+        }
+    })
+
 }
 

@@ -87,7 +87,7 @@ export const books = [
     }
 ]
 
-const authors: {[key:string]:(number[])} = {} 
+const authors: {[key:string]:(number[])} = {}
 // This is the typed way of declaring an empty map
 
 books.forEach( b => {

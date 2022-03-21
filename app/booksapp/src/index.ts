@@ -1,11 +1,12 @@
 import express from 'express'
-import { 
-    addOneBook, 
-    getAllBooks, 
-    getOneBook, 
-    getBooksCategory, 
-    getAuthors, 
-    getCategories } from './data'
+import {
+    addOneBook,
+    getAllBooks,
+    getOneBook,
+    getBooksCategory,
+    getAuthors,
+    getCategories,
+    getStats } from './data'
 
 const app = express()
 const port = 8080
@@ -43,11 +44,11 @@ app.post('/api/books', (req, res) => {
         .on('end', () => {
             const book = JSON.parse(body)
             console.log(book)
-            if( book.title && 
-                book.image && 
-                book.rating && 
-                book.numberrating && 
-                book.category && 
+            if( book.title &&
+                book.image &&
+                book.rating &&
+                book.numberrating &&
+                book.category &&
                 book.authors ) {
                 addOneBook({
                     id:0, // Needs this for the type of Book
@@ -76,9 +77,9 @@ app.post('/api/books', (req, res) => {
 
 // Getting books of one category
 app.get('/api/categories/:category/books', (req, res) => {
-    getBooksCategory(req.params.category, (data) => { 
+    getBooksCategory(req.params.category, (data) => {
         res.status(200)
-        res.send(JSON.stringify(data)) 
+        res.send(JSON.stringify(data))
     })
 })
 
@@ -86,7 +87,7 @@ app.get('/api/categories/:category/books', (req, res) => {
 app.get('/api/authors', (req, res) => {
     getAuthors((data) => {
         res.status(200)
-        res.send(JSON.stringify(data)) 
+        res.send(JSON.stringify(data))
     })
 })
 
@@ -94,12 +95,17 @@ app.get('/api/authors', (req, res) => {
 app.get('/api/categories', (req, res) => {
     getCategories((data) => {
         res.status(200)
-        res.send(JSON.stringify(data)) 
+        res.send(JSON.stringify(data))
     })
 })
 
 
-
+app.get('/api/ratings', (req, res) =>{
+    getStats((data) => {
+        res.status(200)
+        res.send(JSON.stringify(data))
+    })
+})
 
 
 

@@ -1,14 +1,25 @@
 // This file is to be imported after books.js in stats.html
 
-function DrawChart() {
+function drawChart(ratings) {
+    console.log(ratings)
+    // Just like in the example
     const ctx = document.getElementById('myChart').getContext('2d');
+
+    // Separate into two separate arrays
+    let labels = []
+    let values = []
+    ratings.forEach(rating => {
+        labels.push(rating.rating)
+        values.push(rating.value)
+    });
+
     const myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: labels,
             datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                label: '# of Books per Rating',
+                data: values,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -38,9 +49,17 @@ function DrawChart() {
     });
 }
 
+function fillChart() {
+    // /api/ratings gets back a list 
+    // [{ rating: 1, number: 10}, {rating: 2, number 20}]
+    fetch("/api/ratings")
+        .then(data => data.json())
+        .then(ratings => drawChart(ratings))
+}
+
 
 window.onload = () => {
-    DrawChart()
+    fillChart()
 
     installOtherEventHandlers()
 }
