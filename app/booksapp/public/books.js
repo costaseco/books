@@ -18,6 +18,7 @@
 //     </div>
 // </div>`
 
+
 function toggleWishList(bookid) {
     const li = document.getElementById(`bookId${"" + bookid}`)
     li.classList.toggle('hidden')
@@ -32,7 +33,8 @@ function toggleWishList(bookid) {
 }
 
 function createBookBox(book) {
-    // This is to be replaced by the appropriate code to construct the HTML elements in JavsScript
+    // This is to be replaced by the appropriate code to 
+    // construct the HTML elements in JavaScript
     const li = document.createElement("LI")
     const div = document.createElement("DIV")
     const img = document.createElement("IMG")
@@ -107,20 +109,15 @@ function fillBooks(books) {
 }
 
 function loadAndFillBooks(search) {
-    fetch('/books.json')
+    let query = ""
+    if (search != undefined)
+        query = `?search=${search}`
+
+    fetch('/api/books')
     .then(data => data.json())
-    .then(books => { fillBooks(books.filter( b => b.title.includes(search || ""))) })
+    .then(books => { fillBooks(books) })
 }
 
-function addNewBook() {
-    fetch("/api/books", {
-        method: "POST",
-        headers: {
-            'content-type':'application/json;charset=utf-8'
-        },
-        body: JSON.stringify({title:"Bla"})
-    })
-}
 
 function applySearch() {
     const input = document.getElementById("searchinput")
@@ -139,12 +136,11 @@ function toggleMenu(num) {
     }
 }
 
-
 function installOtherEventHandlers() {
     // Events to open and close menus
     const menus = document.getElementsByClassName("menuitem")
     for(let i = 0; i < menus.length; i++) {
-        menus[i].addEventListener("click", (e) => {e.preventDefault(); toggleMenu(i)})
+        menus[i].addEventListener("click", (e) => {toggleMenu(i)})
     }
 
     // Events to call loadAndFillBooks with a new search value
@@ -152,9 +148,4 @@ function installOtherEventHandlers() {
     document.getElementById("searchinput").addEventListener("change", applySearch)
 }
 
-window.onload = () => {
-    loadAndFillBooks() // If no parameter is given, search is undefined
-
-    installOtherEventHandlers()
-}
 

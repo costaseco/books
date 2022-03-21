@@ -5,7 +5,8 @@
     <META charset="utf8" />
     <LINK rel="stylesheet" href="books.css" />
     <SCRIPT src="books.js"></SCRIPT>
-    <SCRIPT src="index.js"></SCRIPT>
+    <SCRIPT src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></SCRIPT>
+    <SCRIPT src="stats.js"></SCRIPT>
 </HEAD>
 
 <BODY>
@@ -19,8 +20,8 @@
             <UL id="menuitemlist">
                 <LI class="menuitem"> Library
                     <ul class="submenu hidden">
-                        <li class="submenuitems"><a href="add.html">Add a Book</a></li>
-                        <li class="submenuitems"><a href="stats.html">See Statistics</a></li>
+                        <li class="submenuitems"><a href="index.html">Search Books</a></li>
+                        <li class="submenuitems"><a href="stats.html">Add a Book</a></li>
                     </ul>
                 </LI>
             </UL>
@@ -36,19 +37,21 @@
         <p><a href="">Profile</a></p>
         <p><a href="">Preferences</a></p>
         <h3>Categories</h3>
-        <div id="countcategories"></div>
+        <p><a href="">Drama (1)</a></p>
+        <p><a href="">Historical Romance (2)</a></p>
+        <p><a href="">Science Fiction (5)</a></p>
         <h3>Collections</h3>
         <p><a href="">Holidays (4)</a></p>
         <p><a href="">All timers (10)</a></p>
         <h3>Wish List</h3>
         <ul id="wishlist">
-            
+
         </ul>
     </ASIDE>
     <SECTION>
-        <ul id="listofbooks">
-
-        </UL>
+        <div style="width:400px; height:300px">
+        <canvas id="myChart"></canvas>    
+        </div>
     </SECTION>
     <FOOTER>
         <div>
